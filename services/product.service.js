@@ -18,15 +18,18 @@ class ProductServices{
     }
     delete(id)
     {
+        this.findById(id);
+        
+    }
+
+    findById(id){
         const existingProduct = productRepository.findById(id);
 
-        if(!existingProduct){
+          if(!existingProduct){
             throw new Error("Produto não existe");
         }
 
-        productRepository.delete(id);
-        
-        return;
+        return existingProduct;
     }
 }
 
