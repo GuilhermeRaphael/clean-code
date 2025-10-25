@@ -12,6 +12,18 @@ class ProductRepository{
         return productsList
     }
 
+    findById(id)
+    {
+        return productsList.find((product) => product.id === Number(id));
+    }
+
+    findByName(name) {
+        const product = productsList.find(
+            product => product.name.toLowerCase() === name.toLowerCase
+        );
+        return product;
+    }
+
     /**
      *  Cadastra um produto no banco de dados, criando um novo ID unico
      * 
@@ -32,6 +44,22 @@ class ProductRepository{
         // console.log(productsList)
         return newProduct
     }
+
+    delete(id)
+    {
+        const productIndex = productsList.findIndex(
+            (product) => product.id === Number(id)
+        );
+
+        if (productIndex === -1) 
+        {
+         return false;
+        }
+
+        productsList.splice(productIndex, 1);
+    }
+
+
 }
 
 module.exports = new ProductRepository();

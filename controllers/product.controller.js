@@ -7,9 +7,37 @@ class ProductController{
     }
 
     create(request,response){
-        const newProduct = productService.create(request.body);
+          try{
+            const newProduct = productService.create(request.body);
 
-        response.status(201).json(newProduct);
+            response.status(201).json(newProduct);
+
+        } catch(error) {
+            const errorMessage = {
+                error: error.message,
+            }
+            
+
+        }
+        response.status(400).json
+    }
+
+    delete(request,response)
+    {
+        try
+        {
+            const productId = request.params.id;    
+            productService.delete(productId);
+            
+            response.status(200).json({ message: "Produto removido com sucesso" });
+        }
+        catch(error)
+        {
+            const errorMessage = {
+                error: error.message,
+            };
+            response.status(400).json(errorMessage);
+        }
     }
 }
 
