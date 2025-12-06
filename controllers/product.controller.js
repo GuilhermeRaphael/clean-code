@@ -21,21 +21,21 @@ class ProductController {
     response.status(201).json(newProduct);
   }
   update(request, response) {
-  try {
-    const { id } = request.params;
-    const { name, price, quantity } = request.body;
+    try {
+      const { id } = request.params;
+      const { name, price, quantity } = request.body;
 
-    const updatedProduct = this.productService.update(id, {
-      name,
-      price,
-      quantity,
-    });
+      const updatedProduct = this.productService.update(id, {
+        name,
+        price,
+        quantity,
+      });
 
-    return response.status(200).json(updatedProduct);
-  } catch (error) {
-    return response.status(400).json({ error: error.message });
+      return response.status(200).json(updatedProduct);
+    } catch (error) {
+      return response.status(400).json({ error: error.message });
+    }
   }
-}
 }
 
 module.exports = ProductController;

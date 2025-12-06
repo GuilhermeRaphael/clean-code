@@ -10,8 +10,8 @@ class ProductService {
     return this.productRepository.findAll();
   }
 
-  create(newProduct) {
-    const existingProduct = this.productRepository.findByName(newProduct.name);
+  async create(newProduct) {
+    const existingProduct = await this.productRepository.findByName(newProduct.name);
 
     if (existingProduct) {
       throw new ProductExistsError();

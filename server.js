@@ -3,13 +3,16 @@ const ErrorHandler = require("./middleware/ErrorHandler");
 const ProductRepository = require("./repositories/product.repository");
 const ProductService = require("./services/product.service");
 const ProductController = require("./controllers/product.controller");
+const ProductFirebaseRepository = require("./repositories/product-firebase.repository")
+const db = require("./config/firebase")
 
 const server = express();
 server.use(express.json());
 const port = 3000;
 
 const productRepository = new ProductRepository();
-const productService = new ProductService(productRepository);
+const productFirebaseRepository = new ProductFirebaseRepository(db);
+const productService = new ProductService(productFirebaseRepository);
 const productController = new ProductController(productService);
 
 server.get("/products", productController.list.bind(productController));

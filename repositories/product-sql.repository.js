@@ -1,7 +1,7 @@
 class ProductSqlRepository {
-  findByName() {}
+  findByName() { }
 
-  findAll() {}
+  findAll() { }
 }
 
 module.exports = new ProductSqlRepository();
